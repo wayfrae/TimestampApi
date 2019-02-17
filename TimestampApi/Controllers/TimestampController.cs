@@ -34,7 +34,24 @@ namespace TimestampApi.Controllers
 
             DateTime result;
             
-            DateTime.TryParse(date, out result);            
+            //try to parse the date
+            if(!DateTime.TryParse(date, out result))
+            {//if it fails maybe it is a unix timestamp
+                long unixResult;
+                //try to parse unix timestamp
+                if(long.TryParse(date, out unixResult))
+                {//if it succeeds, parse it to a DateTime
+                    try
+                    {
+                        result = DateTimeOffset.FromUnixTimeMilliseconds(unixResult).DateTime;
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        result = DateTime.MinValue;
+                    }
+                }                
+            }            
 
             if(result == DateTime.MinValue)
             {

@@ -17,14 +17,14 @@ namespace TimestampApi.Models
         public Timestamp()
         {
             DateAndTime = DateTime.Now;
-            Unix = DateAndTime.Ticks;
+            Unix = ((DateTimeOffset)DateAndTime).ToUnixTimeMilliseconds();
             Utc = DateAndTime.ToUniversalTime().ToString("r", DateTimeFormatInfo.InvariantInfo);
         }
 
         public Timestamp(DateTime userDate)
         {
             DateAndTime = userDate;
-            Unix = DateAndTime.Ticks;
+            Unix = ((DateTimeOffset)DateAndTime).ToUnixTimeMilliseconds();
             Utc = DateAndTime.ToString("r", DateTimeFormatInfo.InvariantInfo);
         }
     }
