@@ -13,3 +13,4 @@ If date_string is not provided then the current date and time will be returned.
 {"unix": 1479663089000 ,"utc": "Sun, 20 Nov 2016 17:31:29 GMT"}
 
 ## It is deployed at the link below
+http://zachfrazier.com/api/timestamp
